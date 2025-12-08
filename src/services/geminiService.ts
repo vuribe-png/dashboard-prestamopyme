@@ -1,10 +1,15 @@
 import { GoogleGenAI } from "@google/genai";
 import { FinancialData } from "../types";
 
-// Access API key from process.env as per guidelines
+// The API key must be obtained exclusively from the environment variable process.env.API_KEY
+// as per the @google/genai coding guidelines.
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateTrendAnalysis = async (data: FinancialData[]): Promise<string> => {
+  if (!process.env.API_KEY) {
+    return "Error: Falta la API Key. Por favor configura la variable de entorno API_KEY.";
+  }
+
   const prompt = `
     Analiza los siguientes datos financieros sobre Inflación vs Tasas de Interés (en Soles) para un reporte ejecutivo.
     
