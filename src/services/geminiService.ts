@@ -1,13 +1,13 @@
 import { GoogleGenAI } from "@google/genai";
 import { FinancialData } from "../types";
 
-// The API key must be obtained exclusively from the environment variable process.env.API_KEY
-// as per the @google/genai coding guidelines.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// CORRECCIÓN: Usamos import.meta.env.VITE_API_KEY que es el estándar de Vite/Netlify
+const apiKey = import.meta.env.VITE_API_KEY || '';
+const ai = new GoogleGenAI({ apiKey });
 
 export const generateTrendAnalysis = async (data: FinancialData[]): Promise<string> => {
-  if (!process.env.API_KEY) {
-    return "Error: Falta la API Key. Por favor configura la variable de entorno API_KEY.";
+  if (!apiKey) {
+    return "Error: Falta la API Key. Por favor configura la variable de entorno VITE_API_KEY en Netlify.";
   }
 
   const prompt = `
