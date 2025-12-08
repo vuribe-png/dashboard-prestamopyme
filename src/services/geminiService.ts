@@ -1,15 +1,13 @@
+
 import { GoogleGenAI } from "@google/genai";
 import { FinancialData } from "../types";
 
-// CORRECCIÓN: Usamos import.meta.env.VITE_API_KEY que es el estándar de Vite/Netlify
-const apiKey = import.meta.env.VITE_API_KEY || '';
-const ai = new GoogleGenAI({ apiKey });
+// Initialize Gemini AI client
+// The API key is obtained exclusively from process.env.API_KEY as per guidelines.
+// Assume it is pre-configured and valid.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateTrendAnalysis = async (data: FinancialData[]): Promise<string> => {
-  if (!apiKey) {
-    return "Error: Falta la API Key. Por favor configura la variable de entorno VITE_API_KEY en Netlify.";
-  }
-
   const prompt = `
     Analiza los siguientes datos financieros sobre Inflación vs Tasas de Interés (en Soles) para un reporte ejecutivo.
     
