@@ -1,9 +1,11 @@
-<change>
 <file>src/services/geminiService.ts</file>
-<description>Corrección de API Key: Usar import.meta.env.VITE_API_KEY para Vite/Netlify</description>
+<description>Estandarización Vite: Usar import.meta.env.VITE_API_KEY. process.env no existe en el navegador.</description>
 <content><![CDATA[import { GoogleGenAI } from "@google/genai";
 import { FinancialData } from "../types";
-// CORRECCIÓN: Usar import.meta.env.VITE_API_KEY (Estándar Vite/Netlify)
+// CORRECCIÓN EXPERTA:
+// En aplicaciones Vite (Frontend puro), 'process.env' no existe y causa errores.
+// Se debe usar 'import.meta.env.VITE_API_KEY'.
+// Asegúrate de que en Netlify la variable se llame VITE_API_KEY.
 const apiKey = import.meta.env.VITE_API_KEY || '';
 const ai = new GoogleGenAI({ apiKey });
 export const generateTrendAnalysis = async (data: FinancialData[]): Promise<string> => {
@@ -39,4 +41,3 @@ console.error("Error Análisis Gemini:", error);
 return "Lo siento, no pude generar el análisis en este momento.";
 }
 };]]></content>
-</change>

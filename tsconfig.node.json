@@ -1,14 +1,10 @@
-<change>
-<file>tsconfig.node.json</file>
-<description>Crear configuración de TypeScript para Node (necesaria para vite.config.ts)</description>
-<content><![CDATA[{
-"compilerOptions": {
-"composite": true,
-"skipLibCheck": true,
-"module": "ESNext",
-"moduleResolution": "bundler",
-"allowSyntheticDefaultImports": true
-},
-"include": ["vite.config.ts"]
-}]]></content>
-</change>
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"]
+}
